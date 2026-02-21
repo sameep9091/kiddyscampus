@@ -185,13 +185,12 @@
             align-items: center;
             justify-content: space-between;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        nav.hide {
+        nav.nav-hidden {
             transform: translateY(-100%);
+            box-shadow: none;
         }
-
         .logo {
             font-family: 'Fredoka One', cursive;
             font-size: 1.4rem;
@@ -726,7 +725,7 @@
             .activities-grid { grid-template-columns: 1fr 1fr; }
             .logo { font-size: 1.1rem; }
         }
-        </style>
+    </style>
     </head>
     <body>
 
@@ -1004,59 +1003,221 @@
                                 Kutch</p></div>
                         <div class="branch-info"><h4>📞 Contact</h4><p>Kalpna
                                 Shah: 9099037364</p></div>
+                        <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
+                                Friday: 9:00am – 12:00pm</p></div>
+                        <a href="#contact" class="btn-primary"
+                            style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire
+                            Now</a>
+                    </div>
+                    <div class="branch-card anim">
+                        <div class="branch-badge">2nd Branch</div>
+                        <h3>2nd Branch</h3>
+                        <div class="branch-info"><h4>📍 Address</h4><p>Darji
+                                Colony<br>Ghanshyam Nagar<br>Bhuj,
+                                Kutch</p></div>
+                        <div class="branch-info"><h4>📞 Contact</h4><p>Jeenali
+                                Shah: 9033903392<br>Jigesha Ghelani:
+                                9512676510</p></div>
+                        <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
+                                Friday: 9:00am – 12:00pm</p></div>
+                        <a href="#contact" class="btn-primary"
+                            style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire
+                            Now</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <script>
-            // Hamburger menu toggle
-            const hamburger = document.getElementById('hamburger');
-            const navOverlay = document.getElementById('navOverlay');
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-tag"
+                    style="background:rgba(255,255,255,0.1); color:var(--sun)">Get
+                    In Touch</div>
+                <h2 class="section-title" style="color:white">Start Your Child's
+                    <span style="color:var(--sun)">Journey Today</span></h2>
+                <p class="section-sub">We'd love to welcome your family to
+                    Kiddy's Campus. Fill in the form and we'll be in touch
+                    within 24 hours.</p>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(78,205,196,0.2)">📞</div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>Jeenali Shah: 9033903392</p>
+                                <p>Kalpna Shah: 9099037364</p>
+                                <p>Jigesha Ghelani: 9512676510</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(255,217,61,0.2)">✉️</div>
+                            <div><h4>Email
+                                    Us</h4><p>kiddyscampus@gmail.com</p></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(107,203,119,0.2)">🕐</div>
+                            <div><h4>Opening Hours</h4><p>Monday –
+                                    Friday:<br><strong>9:00am –
+                                        12:00pm</strong></p></div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Get Started With Our Quick Registration Form</h3>
+                        <a href="https://forms.gle/7J1juqkoG5FpYZgcA"
+                            target="_blank" class="btn-submit">📋 Open
+                            Registration Form</a>
+                        <img src="WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg"
+                            alt="Contact Us" class="contact-image">
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Footer -->
+        <footer>
+            <div class="footer-socials">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📸</a>
+                <a href="#" title="WhatsApp">💬</a>
+            </div>
+            <p>Made with ❤️ by <span>Kiddy's Campus</span> | Bhuj, Kutch | ©
+                2025 All Rights Reserved</p>
+        </footer>
+
+        <script>
+        // ===== ENHANCED ANIMATIONS & INTERACTIVITY =====
+        
+        // Generate animated stars
+        const starsContainer = document.getElementById('stars');
+        if (starsContainer) {
+            for (let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top  = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navOverlay = document.getElementById('navOverlay');
+        if (hamburger) {
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('open');
                 navOverlay.classList.toggle('open');
+                document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
             });
+        }
+        
+        function closeNav() {
+            if (hamburger) hamburger.classList.remove('open');
+            if (navOverlay) navOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
-            function closeNav() {
-                hamburger.classList.remove('open');
-                navOverlay.classList.remove('open');
-            }
-
-            // Scroll-triggered animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.anim').forEach(el => observer.observe(el));
-
-            // Hide navbar on scroll down, show on scroll up
-            let lastScrollTop = 0;
-            const navbar = document.querySelector('nav');
-
-            window.addEventListener('scroll', () => {
-                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-                if (currentScroll > lastScrollTop && currentScroll > 80) {
-                    // Scrolling DOWN - hide navbar
-                    navbar.classList.add('hide');
-                } else {
-                    // Scrolling UP - show navbar
-                    navbar.classList.remove('hide');
+        // Smooth scroll navigation with active state
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                closeNav();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Add active state
+                    document.querySelectorAll('.nav-menu a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
                 }
-
-                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
             });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    // Stagger animation for multiple elements
+                    if (e.target.classList.contains('activity-card')) {
+                        const index = Array.from(e.target.parentChildren).indexOf(e.target);
+                        e.target.style.animationDelay = (index * 0.1) + 's';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation on scroll
+        const elementsToObserve = document.querySelectorAll(
+            '.activity-card, .testimonial-card, .value-item, .gallery-item, .branch-card, .session-card, .anim'
+        );
+        elementsToObserve.forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+
+        // Scroll reveal for section tags
+        document.querySelectorAll('.section-tag').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const scrolled = window.scrollY;
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+
+        // Hide/Show nav on scroll
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll <= 100) {
+                // Show nav at top
+                nav.classList.remove('nav-hidden');
+            } else if (currentScroll > lastScrollTop) {
+                // Scrolling DOWN - hide nav
+                nav.classList.add('nav-hidden');
+            } else {
+                // Scrolling UP - show nav
+                nav.classList.remove('nav-hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Enhance button ripple effect positioning
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+            });
+        });
+
+        // Add scroll progress indicator (optional)
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            // Can be used with a progress bar if needed
+        });
         </script>
     </body>
 </html>
