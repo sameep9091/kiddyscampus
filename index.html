@@ -546,18 +546,299 @@
         .footer-socials a:hover { background: var(--coral); }
 
         /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            nav { padding: 10px 30px; }
+            .logo { font-size: 1.5rem; }
+            .nav-menu { gap: 20px; }
+            section { padding: 60px 20px; }
+        }
+
         @media (max-width: 768px) {
+            /* Navigation */
+            nav { flex-wrap: wrap; gap: 10px; }
+            .nav-menu { 
+                gap: 15px; 
+                font-size: 0.85rem;
+            }
+            .cta-btn { 
+                padding: 8px 16px; 
+                font-size: 0.8rem;
+            }
+
+            /* Hero Section */
+            .hero { 
+                padding: 80px 20px 60px; 
+                min-height: auto;
+            }
+            .hero h1 { 
+                font-size: 2.5rem; 
+                margin-bottom: 15px;
+            }
+            .hero p { 
+                font-size: 1rem; 
+            }
+
+            /* About Section */
             .about-grid { grid-template-columns: 1fr; }
             .about-visual { order: -1; }
             .about-img-box { width: 260px; height: 260px; font-size: 5rem; }
+
+            /* Activities Grid */
+            .activities-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+                gap: 16px;
+            }
+            .activity-icon { font-size: 2rem; }
+            .activity-card h3 { font-size: 1.1rem; }
+            .activity-card p { font-size: 0.85rem; }
+
+            /* Sessions Grid */
+            .sessions-grid { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .session-name { font-size: 1.4rem; }
+            .session-price { font-size: 2rem; }
+
+            /* Gallery */
             .contact-grid { grid-template-columns: 1fr; }
             .form-row { grid-template-columns: 1fr; }
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
                 grid-template-rows: auto;
+                gap: 12px;
             }
             .gallery-item.tall,
             .gallery-item.wide { grid-row: span 1; grid-column: span 1; }
+
+            /* Branches */
+            .branches-grid { 
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            /* Testimonials */
+            .testimonials-grid { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Contact */
+            .contact-grid { 
+                grid-template-columns: 1fr; 
+                gap: 30px;
+            }
+            .contact-form { padding: 24px; }
+            .form-group label { font-size: 0.85rem; }
+            .contact-item { padding: 16px; }
+
+            /* Footer */
+            footer { padding: 20px 15px; }
+            .footer-socials { gap: 12px; }
+            .footer-socials a { width: 35px; height: 35px; }
+        }
+
+        @media (max-width: 480px) {
+            /* Navigation */
+            nav { 
+                padding: 10px 15px; 
+                gap: 8px;
+            }
+            .logo { 
+                font-size: 1.2rem; 
+                gap: 5px;
+            }
+            .nav-menu { 
+                gap: 10px; 
+                font-size: 0.75rem;
+            }
+            .cta-btn { 
+                padding: 6px 12px; 
+                font-size: 0.75rem;
+            }
+
+            /* Hero */
+            .hero { 
+                padding: 60px 15px 40px;
+                min-height: 70vh;
+            }
+            .hero h1 { 
+                font-size: 1.8rem; 
+                margin-bottom: 10px;
+            }
+            .hero h2 { 
+                font-size: 1rem; 
+                margin-bottom: 5px;
+            }
+            .hero p { 
+                font-size: 0.9rem; 
+                margin-bottom: 20px;
+            }
+
+            /* Sections Padding */
+            section { 
+                padding: 40px 15px; 
+            }
+
+            /* About */
+            .about-img-box { 
+                width: 200px; 
+                height: 200px; 
+                font-size: 3rem; 
+            }
+            .about-badge-float { 
+                padding: 8px 12px; 
+                font-size: 0.75rem;
+            }
+            .section-title { 
+                font-size: 1.8rem; 
+            }
+            .section-sub { 
+                font-size: 0.95rem; 
+            }
+
+            /* Activities */
+            .activities-grid { 
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
+                gap: 12px;
+            }
+            .activity-icon { font-size: 1.8rem; }
+            .activity-card { padding: 20px 15px; }
+            .activity-card h3 { 
+                font-size: 0.95rem; 
+                margin-bottom: 6px;
+            }
+            .activity-card p { font-size: 0.8rem; }
+
+            /* Gallery */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+                gap: 10px;
+            }
+            .gallery-item { font-size: 2.5rem; }
+
+            /* Sessions */
+            .sessions-grid { gap: 15px; }
+            .session-card { padding: 24px 20px; }
+            .session-name { font-size: 1.2rem; }
+            .session-price { font-size: 1.6rem; }
+            .session-age { font-size: 0.85rem; }
+            .session-features li { 
+                font-size: 0.85rem; 
+                gap: 8px;
+            }
+
+            /* Testimonials */
+            .testimonial-card { 
+                padding: 20px; 
+                border-radius: 16px;
+            }
+            .quote-mark { 
+                font-size: 3rem; 
+                top: 5px; 
+                left: 10px;
+            }
+            .testimonial-text { 
+                font-size: 0.9rem; 
+                line-height: 1.5;
+            }
+            .author-avatar { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 1.2rem;
+            }
+            .author-name { font-size: 0.85rem; }
+            .author-role { font-size: 0.75rem; }
+
+            /* Branches */
+            .branch-card { 
+                padding: 24px 20px; 
+                border-radius: 16px;
+            }
+            .branch-badge { 
+                padding: 4px 12px; 
+                font-size: 0.7rem;
+            }
+            .branch-card h3 { 
+                font-size: 1.4rem; 
+                margin-bottom: 15px;
+            }
+            .branch-info h4 { 
+                font-size: 0.85rem; 
+                margin-bottom: 6px;
+            }
+            .branch-info p { 
+                font-size: 0.85rem; 
+                line-height: 1.5;
+            }
+
+            /* Contact Form */
+            .contact-form { 
+                padding: 20px; 
+                border-radius: 16px;
+            }
+            .contact-form h3 { 
+                font-size: 1.2rem; 
+                margin-bottom: 20px;
+            }
+            .form-group label { 
+                font-size: 0.75rem; 
+                margin-bottom: 6px;
+            }
+            .form-group input,
+            .form-group select,
+            .form-group textarea { 
+                padding: 10px 12px; 
+                font-size: 0.9rem;
+            }
+            .form-group textarea { 
+                min-height: 80px; 
+            }
+            .btn-submit { 
+                padding: 12px; 
+                font-size: 0.95rem;
+            }
+
+            /* Contact Item */
+            .contact-item { 
+                padding: 15px; 
+                gap: 12px;
+            }
+            .contact-item-icon { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 1.2rem;
+            }
+            .contact-item h4 { font-size: 0.9rem; }
+            .contact-item p { font-size: 0.85rem; }
+
+            /* Footer */
+            footer { 
+                padding: 15px 10px; 
+                font-size: 0.8rem;
+            }
+            .footer-socials { 
+                gap: 10px; 
+                margin-bottom: 12px;
+            }
+            .footer-socials a { 
+                width: 32px; 
+                height: 32px; 
+                font-size: 0.95rem;
+            }
+
+            /* Hide unnecessary on very small screens */
+            .hero .shape1, .hero .shape2, .hero .shape3, .hero .shape4 {
+                opacity: 0.1;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 { font-size: 1.5rem; }
+            .section-title { font-size: 1.5rem; }
+            .activity-icon { font-size: 1.5rem; }
+            .gallery-item { font-size: 1.8rem; }
         }
     </style>
 </head>
