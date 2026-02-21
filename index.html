@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiddy's Campus - Preschool & Daycare</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kiddy's Campus - Preschool & Nursery</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+            rel="stylesheet">
+
+        <style>
         :root {
             --sun:      #FFD93D;
             --coral:    #FF6B6B;
@@ -73,9 +75,104 @@
             align-items: center;
             gap: 8px;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,107,107,0.5); }
+        /* ===== SCROLL ANIMATIONS ===== */
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
-        /* ===== NAVIGATION ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+
+        /* Enhanced card hover effects */
+        .activity-card, .testimonial-card, .branch-card, .session-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: perspective(1000px) rotateX(0);
+        }
+        .activity-card:hover, .testimonial-card:hover, .branch-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Smooth transitions */
+        a, button { transition: all 0.3s ease; }
+
+        /* ===== ENHANCED TYPOGRAPHY ===== */
+        .section-title {
+            background: linear-gradient(135deg, var(--coral), var(--sky));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ENHANCED HERO ===== */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,212,61,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(78,205,196,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* ===== ENHANCED BUTTONS ===== */
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .cta-btn:hover::before {
+            animation: ripple 0.6s ease-out;
+        }
+        @keyframes ripple {
+            to {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        /* ===== GRADIENT TEXT ===== */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--coral), var(--sky), var(--mint));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         nav {
             position: fixed;
             top: 0;
@@ -287,14 +384,44 @@
         .activity-card {
             background: white; border-radius: 20px; padding: 24px 18px;
             text-align: center; cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative; overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
-        .activity-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; }
-        .activity-card:hover { transform: translateY(-6px); box-shadow: 0 14px 36px rgba(0,0,0,0.1); }
-        .activity-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
-        .activity-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.15rem; margin-bottom: 8px; }
-        .activity-card p { font-size: 0.85rem; color: #777; line-height: 1.5; }
+        .activity-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; transition: all 0.4s ease; }
+        .activity-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        .activity-card:hover::before { height: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .activity-icon { 
+            font-size: 2.8rem; 
+            margin-bottom: 12px; 
+            display: block;
+            animation: bounce 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+        .activity-card:hover .activity-icon { transform: scale(1.2) rotate(10deg); }
+        .activity-card h3 { 
+            font-family: 'Fredoka One', cursive; 
+            font-size: 1.25rem; 
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        .activity-card:hover h3 { text-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .activity-card p { 
+            font-size: 0.9rem; 
+            color: #666; 
+            line-height: 1.6;
+        }
         .c1::before { background: var(--coral);    } .c1 h3 { color: var(--coral);    }
         .c2::before { background: var(--sky);      } .c2 h3 { color: var(--sky);      }
         .c3::before { background: var(--mint);     } .c3 h3 { color: var(--mint);     }
@@ -342,17 +469,69 @@
             gap: 24px; margin-top: 40px;
         }
         .testimonial-card {
-            background: white; border-radius: 22px; padding: 28px 24px;
-            transition: transform 0.3s; position: relative;
+            background: white; 
+            border-radius: 22px; 
+            padding: 28px 24px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--coral);
         }
-        .testimonial-card:hover { transform: translateY(-5px); }
-        .quote-mark { font-family: 'Fredoka One', cursive; font-size: 4rem; color: var(--coral); opacity: 0.15; position: absolute; top: 8px; left: 16px; line-height: 1; }
-        .stars        { color: var(--sun); font-size: 1rem; margin-bottom: 14px; }
-        .testimonial-text { font-size: 0.95rem; line-height: 1.7; color: #555; margin-bottom: 18px; font-weight: 600; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .author-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-        .author-name { font-weight: 800; font-size: 0.9rem; }
-        .author-role { font-size: 0.8rem; color: #999; font-weight: 600; }
+        .testimonial-card:hover { 
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-left-color: var(--sky);
+        }
+        .quote-mark { 
+            font-family: 'Fredoka One', cursive; 
+            font-size: 6rem; 
+            color: var(--coral); 
+            opacity: 0.08; 
+            position: absolute; 
+            top: -10px; 
+            left: 8px; 
+            line-height: 1;
+        }
+        .stars { 
+            color: var(--sun); 
+            font-size: 1.1rem; 
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+        .testimonial-text { 
+            font-size: 1rem; 
+            line-height: 1.8; 
+            color: #555; 
+            margin-bottom: 20px; 
+            font-weight: 500;
+        }
+        .testimonial-author { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px;
+        }
+        .author-avatar { 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover .author-avatar { transform: scale(1.1); }
+        .author-name { 
+            font-weight: 800; 
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        .author-role { 
+            font-size: 0.8rem; 
+            color: #999; 
+            font-weight: 600;
+        }
 
         /* ===== BRANCHES SECTION ===== */
         #branches { background: linear-gradient(135deg, #E8F9FF, #E8FFE8); }
@@ -410,19 +589,45 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background: #1a1a1a; color: #aaa;
-            text-align: center; padding: 28px 20px;
-            font-weight: 600; font-size: 0.85rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #aaa;
+            text-align: center; 
+            padding: 40px 20px 30px;
+            font-weight: 600; 
+            font-size: 0.85rem;
+            border-top: 2px solid var(--coral);
         }
-        footer span { color: var(--coral); }
-        .footer-socials { display: flex; justify-content: center; gap: 14px; margin-bottom: 14px; }
+        footer span { color: var(--coral); font-weight: 800; }
+        footer p { transition: all 0.3s ease; }
+        footer:hover span { text-shadow: 0 0 10px rgba(255,107,107,0.5); }
+        
+        .footer-socials { 
+            display: flex; 
+            justify-content: center; 
+            gap: 16px; 
+            margin-bottom: 20px;
+        }
         .footer-socials a {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; text-decoration: none; transition: background 0.2s;
+            width: 42px; 
+            height: 42px; 
+            border-radius: 50%;
+            background: rgba(255,107,107,0.15);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 1.1rem; 
+            text-decoration: none; 
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid transparent;
         }
-        .footer-socials a:hover { background: var(--coral); }
+        .footer-socials a:hover { 
+            background: var(--coral); 
+            color: white;
+            transform: translateY(-5px) scale(1.15);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+        }
+
 
         /* ===== SCROLL ANIMATIONS ===== */
         .anim { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -516,280 +721,480 @@
             .logo { font-size: 1.1rem; }
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="navOverlay">
-        <a href="#about" onclick="closeNav()">About</a>
-        <a href="#activities" onclick="closeNav()">Activities</a>
-        <a href="#gallery" onclick="closeNav()">Gallery</a>
-        <a href="#testimonials" onclick="closeNav()">Testimonials</a>
-        <a href="#branches" onclick="closeNav()">Branches</a>
-        <a href="#contact" onclick="closeNav()">Contact</a>
-        <a href="#contact" class="cta-btn" onclick="closeNav()">Enroll Now 🎒</a>
-    </div>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">🎨 Kiddy's Campus</a>
-        <ul class="nav-menu">
-            <li><a href="#about">About</a></li>
-            <li><a href="#activities">Activities</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#branches">Branches</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="cta-btn">Enroll Now</a>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-stars" id="stars"></div>
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-        <div class="shape shape4"></div>
-        <div class="hero-content">
-            <h2><b>Welcome to</b></h2>
-            <h1>Kiddy's Campus</h1>
-            <p>Where imagination, learning, and fun come together!</p>
-            <a href="#contact" class="btn-primary">Start Your Journey Today 🚀</a>
+        <!-- Mobile Nav Overlay -->
+        <div class="nav-overlay" id="navOverlay">
+            <a href="#about" onclick="closeNav()">About</a>
+            <a href="#activities" onclick="closeNav()">Activities</a>
+            <a href="#gallery" onclick="closeNav()">Gallery</a>
+            <a href="#testimonials" onclick="closeNav()">Testimonials</a>
+            <a href="#branches" onclick="closeNav()">Branches</a>
+            <a href="#contact" onclick="closeNav()">Contact</a>
+            <a href="#contact" class="cta-btn" onclick="closeNav()">Enroll Now
+                🎒</a>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-visual">
-                    <div class="about-img-box">🏫</div>
-                    <div class="about-badge-float b1">❤️ Ofsted Outstanding</div>
-                    <div class="about-badge-float b2">🌈 Best Nursery In Town</div>
-                </div>
-                <div>
-                    <div class="section-tag" style="background:#FFE8D6; color:var(--coral)">Our Story</div>
-                    <h2 class="section-title">A Place Children Call <span style="color:var(--coral)">Home Away</span> From Home</h2>
-                    <p class="section-sub">At Kiddy's Campus, we believe the early years are the most magical. Our passionate team creates a nurturing, stimulating environment where curiosity is celebrated and every child is treasured.</p>
-                    <div class="values-list">
-                        <div class="value-item anim">
-                            <div class="value-icon" style="background:#FFE8D6">🌱</div>
-                            <div><h4>Child-Led Learning</h4><p>We follow every child's natural curiosity, letting them lead their own discovery journey.</p></div>
-                        </div>
-                        <div class="value-item anim">
-                            <div class="value-icon" style="background:#E8F9FF">🤝</div>
-                            <div><h4>Qualified & Caring Staff</h4><p>All our team are Level 3+ qualified and DBS-checked, with ongoing CPD training.</p></div>
-                        </div>
-                        <div class="value-item anim">
-                            <div class="value-icon" style="background:#E8FFE8">🏡</div>
-                            <div><h4>Safe & Stimulating Space</h4><p>Purpose-built, fully-equipped indoor and outdoor environments designed for growing minds.</p></div>
-                        </div>
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="logo">🎨 Kiddy's Campus</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#branches">Branches</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-btn">Enroll Now</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-stars" id="stars"></div>
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+            <div class="shape shape4"></div>
+            <div class="hero-content">
+                <h2><b>Welcome to</b></h2>
+                <h1>Kiddy's Campus</h1>
+                <p>Where imagination, learning, and fun come together!</p>
+                <a href="#contact" class="btn-primary">Start Your Journey Today
+                    🚀</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-visual">
+                        <div class="about-img-box">🏫</div>
+                        <div class="about-badge-float b1">❤️ Ofsted
+                            Outstanding</div>
+                        <div class="about-badge-float b2">🌈 Best Nursery In
+                            Town</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Activities Section -->
-    <section id="activities">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-tag" style="background:#E8FAFF; color:var(--sky)">What We Do</div>
-                <h2 class="section-title">Packed With <span style="color:var(--sky)">Fun Activities</span></h2>
-                <p class="section-sub" style="margin:0 auto">Every day is an adventure! Our curriculum is packed with engaging, age-appropriate activities designed to spark creativity and build key skills.</p>
-            </div>
-            <div class="activities-grid">
-                <div class="activity-card c1 anim"><span class="activity-icon">🎨</span><h3>Arts & Crafts</h3><p>Painting, collage, and creative expression that develops fine motor skills and imagination.</p></div>
-                <div class="activity-card c2 anim"><span class="activity-icon">📚</span><h3>Story Time</h3><p>Daily storytelling and phonics sessions that build a lifelong love of reading.</p></div>
-                <div class="activity-card c3 anim"><span class="activity-icon">🌿</span><h3>Outdoor Exploration</h3><p>Nature walks, gardening, and outdoor play in our beautiful garden.</p></div>
-                <div class="activity-card c4 anim"><span class="activity-icon">🎵</span><h3>Music & Movement</h3><p>Singing, rhythm, and dance sessions that boost confidence and coordination.</p></div>
-                <div class="activity-card c5 anim"><span class="activity-icon">🔢</span><h3>Maths & Science</h3><p>Fun experiments and number games that make early maths exciting and hands-on.</p></div>
-                <div class="activity-card c6 anim"><span class="activity-icon">🤸</span><h3>Soft Play & PE</h3><p>Physical activity sessions that develop gross motor skills and healthy habits.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-tag" style="background:#FFE8D6; color:var(--coral)">Our World</div>
-                <h2 class="section-title">A Peek Inside <span style="color:var(--coral)">Kiddy's Campus</span></h2>
-                <p class="section-sub" style="margin:0 auto">Moments of joy, discovery, and friendship captured every day.</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item tall g1 anim"><img src="" alt="Arts & Crafts" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Arts & Crafts Corner</div></div>
-                <div class="gallery-item g2 anim"><img src="" alt="Outdoor Play" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Garden Explorers</div></div>
-                <div class="gallery-item g3 anim"><img src="" alt="Music & Dance" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Music & Dance</div></div>
-                <div class="gallery-item wide g4 anim"><img src="" alt="Story Time" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Story Time Circle</div></div>
-                <div class="gallery-item g5 anim"><img src="" alt="Soft Play" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Soft Play Fun</div></div>
-                <div class="gallery-item g6 anim"><img src="" alt="Snack Time" style="width:100%;height:100%;object-fit:cover;"><div class="gallery-label">Snack Time</div></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-tag" style="background:rgba(255,107,107,0.15); color:var(--coral)">Happy Families</div>
-                <h2 class="section-title">What <span style="color:var(--coral)">Parents Say</span></h2>
-                <p class="section-sub" style="margin:0 auto">Don't just take our word for it — hear from the families who trust us every day.</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card anim">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">My daughter absolutely loves coming to Kiddy's Campus every morning. She's made such wonderful friends and her confidence has blossomed beyond recognition. The staff are incredible — warm, caring, and truly passionate.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:#FFE8D6">👩</div>
-                        <div><div class="author-name">Sarah Mitchell</div><div class="author-role">Mum to Emma, age 3</div></div>
-                    </div>
-                </div>
-                <div class="testimonial-card anim">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">We were nervous about starting nursery but the team made the transition so smooth. Our son now cries when it's the weekend! The activities are so creative and he comes home buzzing every day.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:#E8F9FF">👨</div>
-                        <div><div class="author-name">James & Priya Patel</div><div class="author-role">Parents of Oliver, age 2</div></div>
-                    </div>
-                </div>
-                <div class="testimonial-card anim">
-                    <div class="quote-mark">"</div>
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">Kiddy's Campus prepared my twins for school brilliantly. Their reading, social skills, and love of learning are all thanks to the amazing foundation built here. We'd recommend them to every family!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:#E8FFE8">👩</div>
-                        <div><div class="author-name">Laura Thompson</div><div class="author-role">Mum to twin boys, age 5</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Branches Section -->
-    <section id="branches">
-        <div class="container">
-            <div style="text-align:center">
-                <div class="section-tag" style="background:#E8F9FF; color:var(--sky)">Our Locations</div>
-                <h2 class="section-title">Visit Our <span style="color:var(--sky)">2 Branches</span></h2>
-                <p class="section-sub" style="margin:0 auto">Choose the branch that's most convenient for your family. Both locations offer the same world-class care and activities!</p>
-            </div>
-            <div class="branches-grid">
-                <div class="branch-card anim">
-                    <div class="branch-badge">Main Branch</div>
-                    <h3>Main Branch</h3>
-                    <div class="branch-info"><h4>📍 Address</h4><p>Behind Reliance Mall<br>Bhanusali Nagar<br>Bhuj, Kutch</p></div>
-                    <div class="branch-info"><h4>📞 Contact</h4><p>Kalpna Shah: 9099037364</p></div>
-                    <div class="branch-info"><h4>🕐 Hours</h4><p>Monday – Friday: 9:00am – 12:00pm</p></div>
-                    <a href="#contact" class="btn-primary" style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire Now</a>
-                </div>
-                <div class="branch-card anim">
-                    <div class="branch-badge">2nd Branch</div>
-                    <h3>2nd Branch</h3>
-                    <div class="branch-info"><h4>📍 Address</h4><p>Darji Colony<br>Ghanshyam Nagar<br>Bhuj, Kutch</p></div>
-                    <div class="branch-info"><h4>📞 Contact</h4><p>Jeenali Shah: 9033903392<br>Jigesha Ghelani: 9512676510</p></div>
-                    <div class="branch-info"><h4>🕐 Hours</h4><p>Monday – Friday: 9:00am – 12:00pm</p></div>
-                    <a href="#contact" class="btn-primary" style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-tag" style="background:rgba(255,255,255,0.1); color:var(--sun)">Get In Touch</div>
-            <h2 class="section-title" style="color:white">Start Your Child's <span style="color:var(--sun)">Journey Today</span></h2>
-            <p class="section-sub">We'd love to welcome your family to Kiddy's Campus. Fill in the form and we'll be in touch within 24 hours.</p>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-item-icon" style="background:rgba(78,205,196,0.2)">📞</div>
-                        <div>
-                            <h4>Call Us</h4>
-                            <p>Jeenali Shah: 9033903392</p>
-                            <p>Kalpna Shah: 9099037364</p>
-                            <p>Jigesha Ghelani: 9512676510</p>
+                    <div>
+                        <div class="section-tag"
+                            style="background:#FFE8D6; color:var(--coral)">Our
+                            Story</div>
+                        <h2 class="section-title">A Place Children Call <span
+                                style="color:var(--coral)">Home Away</span> From
+                            Home</h2>
+                        <p class="section-sub">At Kiddy's Campus, we believe the
+                            early years are the most magical. Our passionate
+                            team creates a nurturing, stimulating environment
+                            where curiosity is celebrated and every child is
+                            treasured.</p>
+                        <div class="values-list">
+                            <div class="value-item anim">
+                                <div class="value-icon"
+                                    style="background:#FFE8D6">🌱</div>
+                                <div><h4>Child-Led Learning</h4><p>We follow
+                                        every child's natural curiosity, letting
+                                        them lead their own discovery
+                                        journey.</p></div>
+                            </div>
+                            <div class="value-item anim">
+                                <div class="value-icon"
+                                    style="background:#E8F9FF">🤝</div>
+                                <div><h4>Qualified & Caring Staff</h4><p>All our
+                                        team are Level 3+ qualified and
+                                        DBS-checked, with ongoing CPD
+                                        training.</p></div>
+                            </div>
+                            <div class="value-item anim">
+                                <div class="value-icon"
+                                    style="background:#E8FFE8">🏡</div>
+                                <div><h4>Safe & Stimulating
+                                        Space</h4><p>Purpose-built,
+                                        fully-equipped indoor and outdoor
+                                        environments designed for growing
+                                        minds.</p></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon" style="background:rgba(255,217,61,0.2)">✉️</div>
-                        <div><h4>Email Us</h4><p>kiddyscampus@gmail.com</p></div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon" style="background:rgba(107,203,119,0.2)">🕐</div>
-                        <div><h4>Opening Hours</h4><p>Monday – Friday:<br><strong>9:00am – 12:00pm</strong></p></div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Get Started With Our Quick Registration Form</h3>
-                    <a href="https://forms.gle/7J1juqkoG5FpYZgcA" target="_blank" class="btn-submit">📋 Open Registration Form</a>
-                    <img src="WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg" alt="Contact Us" class="contact-image">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-socials">
-            <a href="#" title="Facebook">📘</a>
-            <a href="#" title="Instagram">📸</a>
-            <a href="#" title="WhatsApp">💬</a>
-        </div>
-        <p>Made with ❤️ by <span>Kiddy's Campus</span> | Bhuj, Kutch | © 2025 All Rights Reserved</p>
-    </footer>
+        <!-- Activities Section -->
+        <section id="activities">
+            <div class="container">
+                <div style="text-align:center">
+                    <div class="section-tag"
+                        style="background:#E8FAFF; color:var(--sky)">What We
+                        Do</div>
+                    <h2 class="section-title">Packed With <span
+                            style="color:var(--sky)">Fun Activities</span></h2>
+                    <p class="section-sub" style="margin:0 auto">Every day is an
+                        adventure! Our curriculum is packed with engaging,
+                        age-appropriate activities designed to spark creativity
+                        and build key skills.</p>
+                </div>
+                <div class="activities-grid">
+                    <div class="activity-card c1 anim"><span
+                            class="activity-icon">🎨</span><h3>Arts &
+                            Crafts</h3><p>Painting, collage, and creative
+                            expression that develops fine motor skills and
+                            imagination.</p></div>
+                    <div class="activity-card c2 anim"><span
+                            class="activity-icon">📚</span><h3>Story
+                            Time</h3><p>Daily storytelling and phonics sessions
+                            that build a lifelong love of reading.</p></div>
+                    <div class="activity-card c3 anim"><span
+                            class="activity-icon">🌿</span><h3>Outdoor
+                            Exploration</h3><p>Nature walks, gardening, and
+                            outdoor play in our beautiful garden.</p></div>
+                    <div class="activity-card c4 anim"><span
+                            class="activity-icon">🎵</span><h3>Music &
+                            Movement</h3><p>Singing, rhythm, and dance sessions
+                            that boost confidence and coordination.</p></div>
+                    <div class="activity-card c5 anim"><span
+                            class="activity-icon">🔢</span><h3>Maths &
+                            Science</h3><p>Fun experiments and number games that
+                            make early maths exciting and hands-on.</p></div>
+                    <div class="activity-card c6 anim"><span
+                            class="activity-icon">🤸</span><h3>Soft Play &
+                            PE</h3><p>Physical activity sessions that develop
+                            gross motor skills and healthy habits.</p></div>
+                </div>
+            </div>
+        </section>
 
-    <script>
-        // Stars
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <div class="container">
+                <div style="text-align:center">
+                    <div class="section-tag"
+                        style="background:#FFE8D6; color:var(--coral)">Our
+                        World</div>
+                    <h2 class="section-title">A Peek Inside <span
+                            style="color:var(--coral)">Kiddy's
+                            Campus</span></h2>
+                    <p class="section-sub" style="margin:0 auto">Moments of joy,
+                        discovery, and friendship captured every day.</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item tall g1 anim"><img src
+                            alt="Arts & Crafts"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Arts & Crafts
+                            Corner</div></div>
+                    <div class="gallery-item g2 anim"><img src
+                            alt="Outdoor Play"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Garden Explorers</div></div>
+                    <div class="gallery-item g3 anim"><img src
+                            alt="Music & Dance"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Music & Dance</div></div>
+                    <div class="gallery-item wide g4 anim"><img src
+                            alt="Story Time"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Story Time Circle</div></div>
+                    <div class="gallery-item g5 anim"><img src alt="Soft Play"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Soft Play Fun</div></div>
+                    <div class="gallery-item g6 anim"><img src alt="Snack Time"
+                            style="width:100%;height:100%;object-fit:cover;"><div
+                            class="gallery-label">Snack Time</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials">
+            <div class="container">
+                <div style="text-align:center">
+                    <div class="section-tag"
+                        style="background:rgba(255,107,107,0.15); color:var(--coral)">Happy
+                        Families</div>
+                    <h2 class="section-title">What <span
+                            style="color:var(--coral)">Parents Say</span></h2>
+                    <p class="section-sub" style="margin:0 auto">Don't just take
+                        our word for it — hear from the families who trust us
+                        every day.</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card anim">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">My daughter absolutely loves
+                            coming to Kiddy's Campus every morning. She's made
+                            such wonderful friends and her confidence has
+                            blossomed beyond recognition. The staff are
+                            incredible — warm, caring, and truly passionate.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"
+                                style="background:#FFE8D6">👩</div>
+                            <div><div class="author-name">Sarah
+                                    Mitchell</div><div class="author-role">Mum
+                                    to Emma, age 3</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card anim">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">We were nervous about
+                            starting nursery but the team made the transition so
+                            smooth. Our son now cries when it's the weekend! The
+                            activities are so creative and he comes home buzzing
+                            every day.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"
+                                style="background:#E8F9FF">👨</div>
+                            <div><div class="author-name">James & Priya
+                                    Patel</div><div class="author-role">Parents
+                                    of Oliver, age 2</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card anim">
+                        <div class="quote-mark">"</div>
+                        <div class="stars">★★★★★</div>
+                        <p class="testimonial-text">Kiddy's Campus prepared my
+                            twins for school brilliantly. Their reading, social
+                            skills, and love of learning are all thanks to the
+                            amazing foundation built here. We'd recommend them
+                            to every family!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar"
+                                style="background:#E8FFE8">👩</div>
+                            <div><div class="author-name">Laura
+                                    Thompson</div><div class="author-role">Mum
+                                    to twin boys, age 5</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Branches Section -->
+        <section id="branches">
+            <div class="container">
+                <div style="text-align:center">
+                    <div class="section-tag"
+                        style="background:#E8F9FF; color:var(--sky)">Our
+                        Locations</div>
+                    <h2 class="section-title">Visit Our <span
+                            style="color:var(--sky)">2 Branches</span></h2>
+                    <p class="section-sub" style="margin:0 auto">Choose the
+                        branch that's most convenient for your family. Both
+                        locations offer the same world-class care and
+                        activities!</p>
+                </div>
+                <div class="branches-grid">
+                    <div class="branch-card anim">
+                        <div class="branch-badge">Main Branch</div>
+                        <h3>Main Branch</h3>
+                        <div class="branch-info"><h4>📍 Address</h4><p>Behind
+                                Reliance Mall<br>Bhanusali Nagar<br>Bhuj,
+                                Kutch</p></div>
+                        <div class="branch-info"><h4>📞 Contact</h4><p>Kalpna
+                                Shah: 9099037364</p></div>
+                        <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
+                                Friday: 9:00am – 12:00pm</p></div>
+                        <a href="#contact" class="btn-primary"
+                            style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire
+                            Now</a>
+                    </div>
+                    <div class="branch-card anim">
+                        <div class="branch-badge">2nd Branch</div>
+                        <h3>2nd Branch</h3>
+                        <div class="branch-info"><h4>📍 Address</h4><p>Darji
+                                Colony<br>Ghanshyam Nagar<br>Bhuj,
+                                Kutch</p></div>
+                        <div class="branch-info"><h4>📞 Contact</h4><p>Jeenali
+                                Shah: 9033903392<br>Jigesha Ghelani:
+                                9512676510</p></div>
+                        <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
+                                Friday: 9:00am – 12:00pm</p></div>
+                        <a href="#contact" class="btn-primary"
+                            style="display:block;text-align:center;justify-content:center;margin-top:4px;">Enquire
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-tag"
+                    style="background:rgba(255,255,255,0.1); color:var(--sun)">Get
+                    In Touch</div>
+                <h2 class="section-title" style="color:white">Start Your Child's
+                    <span style="color:var(--sun)">Journey Today</span></h2>
+                <p class="section-sub">We'd love to welcome your family to
+                    Kiddy's Campus. Fill in the form and we'll be in touch
+                    within 24 hours.</p>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(78,205,196,0.2)">📞</div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>Jeenali Shah: 9033903392</p>
+                                <p>Kalpna Shah: 9099037364</p>
+                                <p>Jigesha Ghelani: 9512676510</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(255,217,61,0.2)">✉️</div>
+                            <div><h4>Email
+                                    Us</h4><p>kiddyscampus@gmail.com</p></div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"
+                                style="background:rgba(107,203,119,0.2)">🕐</div>
+                            <div><h4>Opening Hours</h4><p>Monday –
+                                    Friday:<br><strong>9:00am –
+                                        12:00pm</strong></p></div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Get Started With Our Quick Registration Form</h3>
+                        <a href="https://forms.gle/7J1juqkoG5FpYZgcA"
+                            target="_blank" class="btn-submit">📋 Open
+                            Registration Form</a>
+                        <img src="WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg"
+                            alt="Contact Us" class="contact-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-socials">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📸</a>
+                <a href="#" title="WhatsApp">💬</a>
+            </div>
+            <p>Made with ❤️ by <span>Kiddy's Campus</span> | Bhuj, Kutch | ©
+                2025 All Rights Reserved</p>
+        </footer>
+
+        <script>
+        // ===== ENHANCED ANIMATIONS & INTERACTIVITY =====
+        
+        // Generate animated stars
         const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 20; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top  = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starsContainer.appendChild(star);
+        if (starsContainer) {
+            for (let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top  = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
         }
 
-        // Hamburger toggle
+        // Mobile hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navOverlay = document.getElementById('navOverlay');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            navOverlay.classList.toggle('open');
-            document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
-        });
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navOverlay.classList.toggle('open');
+                document.body.style.overflow = navOverlay.classList.contains('open') ? 'hidden' : '';
+            });
+        }
+        
         function closeNav() {
-            hamburger.classList.remove('open');
-            navOverlay.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('open');
+            if (navOverlay) navOverlay.classList.remove('open');
             document.body.style.overflow = '';
         }
 
-        // Smooth scroll
+        // Smooth scroll navigation with active state
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                closeNav();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Add active state
+                    document.querySelectorAll('.nav-menu a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                }
             });
         });
 
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        document.querySelectorAll('.activity-card, .testimonial-card, .value-item, .gallery-item, .branch-card, .anim').forEach(el => {
-            el.classList.add('anim');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    // Stagger animation for multiple elements
+                    if (e.target.classList.contains('activity-card')) {
+                        const index = Array.from(e.target.parentChildren).indexOf(e.target);
+                        e.target.style.animationDelay = (index * 0.1) + 's';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation on scroll
+        const elementsToObserve = document.querySelectorAll(
+            '.activity-card, .testimonial-card, .value-item, .gallery-item, .branch-card, .session-card, .anim'
+        );
+        elementsToObserve.forEach(el => {
+            el.classList.add('animate-on-scroll');
             observer.observe(el);
         });
-    </script>
-</body>
+
+        // Scroll reveal for section tags
+        document.querySelectorAll('.section-tag').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const scrolled = window.scrollY;
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Enhance button ripple effect positioning
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+            });
+        });
+
+        // Add scroll progress indicator (optional)
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            // Can be used with a progress bar if needed
+        });
+        </script>
+    </body>
 </html>
