@@ -252,6 +252,25 @@
         }
         .cta-btn:hover { background: #e55a5a; }
 
+        /* Highlight on hover & focus for primary buttons */
+        .btn-primary:hover,
+        .cta-btn:hover,
+        .btn-submit:hover,
+        .btn-primary:focus-visible,
+        .cta-btn:focus-visible,
+        .btn-submit:focus-visible {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 14px 40px     rgba(255, 217, 2, 0.747), 0 6px 18px rgba(255,107,107,0.18);
+            filter: brightness(1.04);
+        }
+
+        /* Accessible focus ring (keyboard users) */
+        .btn-primary:focus-visible,
+        .cta-btn:focus-visible,
+        .btn-submit:focus-visible {
+            box-shadow: 0 0 0 4px rgba(255,107,107,0.14), 0 14px 40px rgba(0,0,0,0.12);
+            outline: none;
+        }
         /* Mobile Nav Overlay */
         .nav-overlay {
             display: none;
@@ -270,7 +289,7 @@
             font-size: 1.8rem;
             color: var(--dark);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.2s; 
         }
         .nav-overlay a:hover { color: var(--coral); }
         .nav-overlay .cta-btn {
@@ -438,33 +457,90 @@
         #gallery { background: var(--white); }
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 180px);
-            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
             margin-top: 40px;
         }
         .gallery-item {
-            border-radius: 18px; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 3.5rem; cursor: pointer;
-            transition: transform 0.3s; position: relative;
+            border-radius: 18px; 
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            background: linear-gradient(135deg, #f0f0f0, #e8e8e8);
         }
-        .gallery-item:hover { transform: scale(1.03); }
-        .gallery-item.tall  { grid-row: span 2; }
-        .gallery-item.wide  { grid-column: span 2; }
-        .g1 { background: linear-gradient(135deg, #FFD93D, #FF9A3C); }
-        .g2 { background: linear-gradient(135deg, #6BCB77, #4ECDC4); }
-        .g3 { background: linear-gradient(135deg, #C9B1FF, #FF6B6B); }
-        .g4 { background: linear-gradient(135deg, #FF6B6B, #FFD93D); }
-        .g5 { background: linear-gradient(135deg, #4ECDC4, #C9B1FF); }
-        .g6 { background: linear-gradient(135deg, #FF9A3C, #6BCB77); }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        /* ===== IMAGE CROPPING UTILITIES ===== */
+        .crop-top { object-position: center top; }
+        .crop-bottom { object-position: center bottom; }
+        .crop-left { object-position: left center; }
+        .crop-right { object-position: right center; }
+        .crop-center { object-position: center; }
         .gallery-label {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.45); color: white;
-            padding: 8px 14px; font-weight: 700; font-size: 0.85rem;
-            transform: translateY(100%); transition: transform 0.3s;
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.7));
+            color: white;
+            padding: 16px 14px 12px;
+            font-weight: 700; 
+            font-size: 0.9rem;
+            transform: translateY(0);
+            transition: all 0.3s ease;
         }
-        .gallery-item:hover .gallery-label { transform: translateY(0); }
+        .gallery-item:hover .gallery-label {
+            background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.9));
+            padding: 20px 14px 16px;
+        }
+
+        /* ===== TEACHERS SECTION ===== */
+        #teachers { background: linear-gradient(180deg, #FFF8EC 0%, #F6F8FF 100%); }
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 22px;
+            margin-top: 40px;
+        }
+        
+        .teacher-card {
+            background: white;
+            border-radius: 18px;
+            padding: 18px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .teacher-card:hover { transform: translateY(-8px); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+        .teacher-photo {
+            width: 120px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            margin: 0 auto 12px;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        
+        .teacher-name { font-weight: 800; margin-bottom: 6px; font-size: 1rem; }
+        .teacher-role { color: #777; font-weight: 700; font-size: 0.85rem; }
 
         /* ===== TESTIMONIALS SECTION ===== */
         #testimonials { background: linear-gradient(135deg, #FFE8D6, #E8F9FF); }
@@ -659,9 +735,8 @@
             /* Gallery */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 140px);
+                gap: 14px;
             }
-            .gallery-item.tall, .gallery-item.wide { grid-row: span 1; grid-column: span 1; }
 
             /* Contact */
             .contact-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -694,11 +769,10 @@
             /* Gallery */
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 120px);
                 gap: 10px;
             }
-            .gallery-item { font-size: 2.5rem; border-radius: 14px; }
-            .gallery-label { font-size: 0.75rem; padding: 6px 10px; }
+            .gallery-item { border-radius: 14px; }
+            .gallery-label { font-size: 0.8rem; padding: 10px 10px; }
 
             /* Testimonials */
             .testimonials-grid { grid-template-columns: 1fr; }
@@ -732,6 +806,7 @@
         <!-- Mobile Nav Overlay -->
         <div class="nav-overlay" id="navOverlay">
             <a href="#about" onclick="closeNav()">About</a>
+            <a href="#teachers" onclick="closeNav()">Teachers</a>
             <a href="#activities" onclick="closeNav()">Activities</a>
             <a href="#gallery" onclick="closeNav()">Gallery</a>
             <a href="#testimonials" onclick="closeNav()">Testimonials</a>
@@ -746,6 +821,7 @@
             <a href="#" class="logo">🎨 Kiddy's Campus</a>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
+                <li><a href="#teachers">Teachers</a></li>
                 <li><a href="#activities">Activities</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
@@ -768,11 +844,17 @@
             <div class="hero-content">
                 <h2><b>Welcome to</b></h2>
                 <h1>Kiddy's Campus</h1>
-                <p>Where imagination, learning, and fun come together!</p>
+                <div style="color: #0066ff; margin-bottom: -2px; font-size: 1.1rem; text-shadow: 0 2px 8px rgba(0,102,255,0.3); animation-play-state: running; animation: bounce 3s ease-in-out infinite;">
+                <h3><b><i>PlayGroup | Nursery | LKG | UKG</b></i></h3>
+                </div>
+                <p><br>Where imagination, learning, and fun come together!</p>
                 <a href="#contact" class="btn-primary">Start Your Journey Today
                     🚀</a>
             </div>
         </section>
+
+       
+        
 
         <!-- About Section -->
         <section id="about">
@@ -792,11 +874,9 @@
                         <h2 class="section-title">A Place Children Call <span
                                 style="color:var(--coral)">Home Away</span> From
                             Home</h2>
-                        <p class="section-sub">At Kiddy's Campus, we believe the
-                            early years are the most magical. Our passionate
-                            team creates a nurturing, stimulating environment
-                            where curiosity is celebrated and every child is
-                            treasured.</p>
+                        <p class="section-sub"><b>Kiddy's campus 👫play group, nursery, LKG, UKG.. 
+                             <br>Where learning is a joy ful experience..
+                             <br>🌱learn & grow under the shadows of love & care🌹</b></p>
                         <div class="values-list">
                             <div class="value-item anim">
                                 <div class="value-icon"
@@ -887,29 +967,38 @@
                         discovery, and friendship captured every day.</p>
                 </div>
                 <div class="gallery-grid">
-                    <div class="gallery-item tall g1 anim"><img src
-                            alt="Arts & Crafts"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Arts & Crafts
-                            Corner</div></div>
-                    <div class="gallery-item g2 anim"><img src
-                            alt="Outdoor Play"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Garden Explorers</div></div>
-                    <div class="gallery-item g3 anim"><img src
-                            alt="Music & Dance"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Music & Dance</div></div>
-                    <div class="gallery-item wide g4 anim"><img src
-                            alt="Story Time"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Story Time Circle</div></div>
-                    <div class="gallery-item g5 anim"><img src alt="Soft Play"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Soft Play Fun</div></div>
-                    <div class="gallery-item g6 anim"><img src alt="Snack Time"
-                            style="width:100%;height:100%;object-fit:cover;"><div
-                            class="gallery-label">Snack Time</div></div>
+                    <div class="gallery-item anim">
+                        <img src="photos/act.jpeg" alt="Arts & Crafts Activity">
+                        <div class="gallery-label">Arts & Crafts</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/play2.jpeg" alt="Play Area Exploration">
+                        <div class="gallery-label">Play Area</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/sportsday.jpeg" alt="Sports Day Event">
+                        <div class="gallery-label">Sports Day</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/grpgan.jpeg" alt="Group Picture">
+                        <div class="gallery-label">Group Photo</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/bhanugrp.jpeg" alt="Bhanusali Group">
+                        <div class="gallery-label">Team Photo</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/play.jpeg" alt="Soft Play Activities">
+                        <div class="gallery-label">Play Time</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/activity1.jpeg" alt="Activity Corner">
+                        <div class="gallery-label">Activities</div>
+                    </div>
+                    <div class="gallery-item anim">
+                        <img src="photos/WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg" alt="Activity Corner">
+                        <div class="gallery-label">OUR Logo</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -988,7 +1077,7 @@
                         style="background:#E8F9FF; color:var(--sky)">Our
                         Locations</div>
                     <h2 class="section-title">Visit Our <span
-                            style="color:var(--sky)">2 Branches</span></h2>
+                            style="color:var(--sky)">Ghanshyam Nagar Branches</span></h2>
                     <p class="section-sub" style="margin:0 auto">Choose the
                         branch that's most convenient for your family. Both
                         locations offer the same world-class care and
@@ -996,13 +1085,13 @@
                 </div>
                 <div class="branches-grid">
                     <div class="branch-card anim">
-                        <div class="branch-badge">Main Branch</div>
-                        <h3>Main Branch</h3>
+                        <div class="branch-badge"></div>
+                        <h3>Bhanusali Nagar Branch</h3>
                         <div class="branch-info"><h4>📍 Address</h4><p>Behind
                                 Reliance Mall<br>Bhanusali Nagar<br>Bhuj,
                                 Kutch</p></div>
                         <div class="branch-info"><h4>📞 Contact</h4><p>Kalpna
-                                Shah: 9099037364</p></div>
+                                Shah: 9099037364<br><br></p></div>
                         <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
                                 Friday: 9:00am – 12:00pm</p></div>
                         <a href="#contact" class="btn-primary"
@@ -1010,13 +1099,13 @@
                             Now</a>
                     </div>
                     <div class="branch-card anim">
-                        <div class="branch-badge">2nd Branch</div>
-                        <h3>2nd Branch</h3>
+                        <div class="branch-badge"></div>
+                        <h3>Ghanshyam Nagar Branch</h3>
                         <div class="branch-info"><h4>📍 Address</h4><p>Darji
                                 Colony<br>Ghanshyam Nagar<br>Bhuj,
                                 Kutch</p></div>
                         <div class="branch-info"><h4>📞 Contact</h4><p>Jeenali
-                                Shah: 9033903392<br>Jigesha Ghelani:
+                                Shah: 9033903392<br>Jigisha Ghelani:
                                 9512676510</p></div>
                         <div class="branch-info"><h4>🕐 Hours</h4><p>Monday –
                                 Friday: 9:00am – 12:00pm</p></div>
@@ -1027,6 +1116,40 @@
                 </div>
             </div>
         </section>
+
+         <!-- Teachers Section -->
+
+        <section id="teachers">
+            <div class="container">
+                <div style="text-align:center">
+                    <div class="section-tag" style="background:#E8F9FF; color:var(--sky)">Meet Our Team</div>
+                    <h2 class="section-title">Our <span style="color:var(--sky)">Teachers</span></h2>
+                    <p class="section-sub" style="margin:0 auto">Caring, qualified, and passionate educators who nurture every child.</p>
+                </div>
+                <div class="teachers-grid">
+                    <div class="teacher-card anim">
+                        <img src="photos/kalpna.jpeg" alt="Ms. Kalpna Shah" class="teacher-photo">
+                        <div class="teacher-name">Ms. Kalpna Shah</div>
+                        <div class="teacher-role">Bhanusali Nagar Branch <br> Director Head</div>
+                    </div>
+
+                    <div class="teacher-card anim">
+                        <img src="photos\jeenali.jpeg" alt="Ms. Jeenali Shah" class="teacher-photo">
+                        <div class="teacher-name">Ms. Jeenali Shah</div>
+                        <div class="teacher-role">Ghanshyam Nagar<br>Branch Head</div>
+                    </div>
+
+                    <div class="teacher-card anim">
+                        <img src="photos/jigisha.jpeg" alt="Ms. Jigisha Ghelani" class="teacher-photo">
+                        <div class="teacher-name">Ms. Jigisha Ghelani</div>
+                        <div class="teacher-role">KG Section<br>Head</div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </section>
+
 
         <!-- Contact Section -->
         <section id="contact">
@@ -1048,7 +1171,7 @@
                                 <h4>Call Us</h4>
                                 <p>Jeenali Shah: 9033903392</p>
                                 <p>Kalpna Shah: 9099037364</p>
-                                <p>Jigesha Ghelani: 9512676510</p>
+                                <p>Jigisha Ghelani: 9512676510</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1070,7 +1193,7 @@
                         <a href="https://forms.gle/7J1juqkoG5FpYZgcA"
                             target="_blank" class="btn-submit">📋 Open
                             Registration Form</a>
-                        <img src="WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg"
+                        <img src="photos/WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg"
                             alt="Contact Us" class="contact-image">
                     </div>
                 </div>
@@ -1081,8 +1204,8 @@
         <footer>
             <div class="footer-socials">
                 <a href="#" title="Facebook">📘</a>
-                <a href="#" title="Instagram">📸</a>
-                <a href="#" title="WhatsApp">💬</a>
+                <a href="https://www.instagram.com/kiddys_campus?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" title="Instagram">📸</a>
+                <a href="" title="WhatsApp">💬</a>
             </div>
             <p>Made with ❤️ by <span>Kiddy's Campus</span> | Bhuj, Kutch | ©
                 2025 All Rights Reserved</p>
@@ -1094,7 +1217,7 @@
         // Generate animated stars
         const starsContainer = document.getElementById('stars');
         if (starsContainer) {
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 200; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + '%';
