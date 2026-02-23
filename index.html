@@ -27,9 +27,9 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Nunito', sans-serif;
-            background: var(--white);
+            background: url('photos/bgimage.png') center/cover fixed no-repeat;
             color: var(--dark);
-            overflow-x: hidden;
+            overflow-x: scroll;
         }
 
         /* ===== TYPOGRAPHY ===== */
@@ -198,8 +198,19 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 10px;
             white-space: nowrap;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        .logo:hover img {
+            transform: scale(1.1) rotate(5deg);
         }
 
         /* Hamburger */
@@ -353,7 +364,7 @@
         @keyframes twinkle { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
 
         /* ===== ABOUT SECTION ===== */
-        #about { background: var(--white); }
+        #about { background: linear-gradient(rgba(255,254,247,0.95), rgba(255,254,247,0.95)), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -398,7 +409,7 @@
         .value-item p  { font-size: 0.85rem; color: #666; }
 
         /* ===== ACTIVITIES SECTION ===== */
-        #activities { background: linear-gradient(180deg, #FFF8EC 0%, #E8FAFF 100%); }
+        #activities { background: linear-gradient(180deg, rgba(255,248,236,0.95) 0%, rgba(232,250,255,0.95) 100%), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .activities-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -454,7 +465,7 @@
         .c6::before { background: var(--orange);   } .c6 h3 { color: var(--orange);   }
 
         /* ===== GALLERY SECTION ===== */
-        #gallery { background: var(--white); }
+        #gallery { background: linear-gradient(rgba(255,254,247,0.95), rgba(255,254,247,0.95)), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -510,7 +521,7 @@
         }
 
         /* ===== TEACHERS SECTION ===== */
-        #teachers { background: linear-gradient(180deg, #FFF8EC 0%, #F6F8FF 100%); }
+        #teachers { background: linear-gradient(180deg, rgba(255,248,236,0.95) 0%, rgba(246,248,255,0.95) 100%), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .teachers-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -543,7 +554,7 @@
         .teacher-role { color: #777; font-weight: 700; font-size: 0.85rem; }
 
         /* ===== TESTIMONIALS SECTION ===== */
-        #testimonials { background: linear-gradient(135deg, #FFE8D6, #E8F9FF); }
+        #testimonials { background: linear-gradient(135deg, rgba(255,232,214,0.95), rgba(232,249,255,0.95)), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -615,7 +626,7 @@
         }
 
         /* ===== BRANCHES SECTION ===== */
-        #branches { background: linear-gradient(135deg, #E8F9FF, #E8FFE8); }
+        #branches { background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(250, 250, 250, 0.95)), url('photos/bgimage.png') center/cover fixed no-repeat; }
         .branches-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -634,7 +645,7 @@
         .branch-info p  { color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 4px; }
 
         /* ===== CONTACT SECTION ===== */
-        #contact { background: var(--dark); color: white; }
+        #contact { background: linear-gradient(rgba(45,45,45,0.95), rgba(45,45,45,0.95)), url('photos/bgimage.png') center/cover fixed no-repeat; color: white; }
         #contact .section-sub { color: #aaa; }
         .contact-grid {
             display: grid;
@@ -818,7 +829,7 @@
 
         <!-- Navigation -->
         <nav>
-            <a href="#" class="logo">🎨 Kiddy's Campus</a>
+            <a href="#about" class="logo"><img src="photos/logo.png" alt="Kiddy's Campus Logo"> Kiddy's Campus</a>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#teachers">Teachers</a></li>
@@ -830,7 +841,7 @@
             </ul>
             <a href="#contact" class="cta-btn">Enroll Now</a>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <span></span><span></span><span></span>
+               
             </button>
         </nav>
 
@@ -996,7 +1007,7 @@
                         <div class="gallery-label">Activities</div>
                     </div>
                     <div class="gallery-item anim">
-                        <img src="photos/WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg" alt="Activity Corner">
+                        <img src="photos/logo.png" alt="Our Logo">
                         <div class="gallery-label">OUR Logo</div>
                     </div>
                 </div>
@@ -1130,7 +1141,7 @@
                     <div class="teacher-card anim">
                         <img src="photos/kalpna.jpeg" alt="Ms. Kalpna Shah" class="teacher-photo">
                         <div class="teacher-name">Ms. Kalpna Shah</div>
-                        <div class="teacher-role">Bhanusali Nagar Branch <br> Director Head</div>
+                        <div class="teacher-role">Bhanusali Nagar Branch Head <br> (Director) </div>
                     </div>
 
                     <div class="teacher-card anim">
@@ -1169,8 +1180,8 @@
                                 style="background:rgba(78,205,196,0.2)">📞</div>
                             <div>
                                 <h4>Call Us</h4>
-                                <p>Jeenali Shah: 9033903392</p>
                                 <p>Kalpna Shah: 9099037364</p>
+                                <p>Jeenali Shah: 9033903392</p>
                                 <p>Jigisha Ghelani: 9512676510</p>
                             </div>
                         </div>
@@ -1193,7 +1204,7 @@
                         <a href="https://forms.gle/hWxNypZX7b1xwbTP6"
                             target="_blank" class="btn-submit">📋 Open
                             Registration Form</a>
-                        <img src="photos/WhatsApp Image 2026-02-21 at 3.02.40 PM.jpeg"
+                        <img src="photos/logo.png"
                             alt="Contact Us" class="contact-image">
                     </div>
                 </div>
